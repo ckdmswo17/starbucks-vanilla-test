@@ -1,3 +1,4 @@
+
 const searchEl = document.querySelector('.search');
 const searchInputEl = searchEl.querySelector('input');
 
@@ -44,3 +45,21 @@ fadeEls.forEach(function(fadeEl, indexx){
         opacity: 1
     });
 });
+
+// new Swiper(선택자, 옵션)
+new Swiper('.notice-line .swiper-container', {
+  direction: 'vertical',
+  loop: true,
+  spaceBetween: 10000, // 밑에 방법이 안먹혀서 거리를 엄청늘리는 임시방책 사용..
+  autoplay: {
+    disableOnInteraction : false
+  }
+});
+
+/*swiperEls = document.querySelectorAll('.swiper-wrapper .swiper-slide'); // 요소의 id 값이 target이라 가정
+_.throttle('scroll',function(){
+    swiperEls.forEach(function(swiperEl,index) {
+    clientRect = swiperEl.getBoundingClientRect(); // DomRect 구하기 (각종 좌표값이 들어있는 객체)
+    relativeTop = clientRect.top;
+    console.log(relativeTop);
+})},1);*/ // 범위밖 슬라이드를 안보이게 하려는 도전 -> 실패
