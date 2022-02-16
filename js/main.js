@@ -50,7 +50,7 @@ fadeEls.forEach(function(fadeEl, indexx){
 new Swiper('.notice-line .swiper-container', {
   direction: 'vertical',
   loop: true,
-  spaceBetween: 10000, // 밑에 방법이 안먹혀서 거리를 엄청늘리는 임시방책 사용..
+ // 밑에 방법이 안먹혀서 거리를 엄청늘리는 임시방책 사용.. -> visibilty 사용으로 해결!!!
   autoplay: {
     disableOnInteraction : false
   }
@@ -63,3 +63,35 @@ _.throttle('scroll',function(){
     relativeTop = clientRect.top;
     console.log(relativeTop);
 })},1);*/ // 범위밖 슬라이드를 안보이게 하려는 도전 -> 실패
+
+new Swiper('.promotion .swiper-container', {
+    slidePerView: 3,
+    spaceBetween: 10,
+    centeredSlides: true,
+    loop: true,
+    autoplay: {
+        delay: 5000
+    },
+    pagination: {
+        el: '.promotion .swiper-pagination',  // 페이지 번호 요소 선택자
+        clickable: true, // 사용자의 페이지 번호 요소 제어 가능여부
+    },
+    navigation:{
+        prevEl: '.promotion .swiper-prev',
+        nextEl: '.promotion .swiper-next',
+    }
+});
+
+const promotionEl = document.querySelector(".promotion");
+const promotionToggleBtn = document.querySelector(".toggle-promotion");
+let isHidePromotion = false;
+promotionToggleBtn.addEventListener('click',function(){
+    isHidePromotion = !isHidePromotion;
+    if(isHidePromotion){
+        // 숨김 처리!
+        promotionEl.classList.add('hide');
+    } else {
+        // 보임 처리!
+        promotionEl.classList.remove('hide');
+    }
+});
